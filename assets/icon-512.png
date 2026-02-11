@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#1a1a2e"/>
-  <text x="256" y="300" font-family="Arial" font-size="160" fill="#00d9ff" text-anchor="middle">P</text>
-</svg>
+📦 Icon Placeholder
+
+This file is a placeholder for the 512x512px PNG icon.
+
+To complete the PWA setup, replace this file with an actual PNG image:
+- Dimensions: 512x512 pixels
+- Format: PNG
+- Content: App logo or branding
+
+The icon will be used for:
+- PWA splash screens
+- High-resolution displays
+- App store listings

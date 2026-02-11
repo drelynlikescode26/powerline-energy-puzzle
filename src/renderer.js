@@ -64,7 +64,7 @@ export class Renderer {
       if (i < cores.length) {
         const core = document.createElement('div');
         core.className = 'core';
-        core.style.backgroundColor = COLOR_MAP[cores[i]] || '#gray';
+        core.style.backgroundColor = COLOR_MAP[cores[i]] || '#808080';
         core.dataset.color = cores[i];
         slot.appendChild(core);
       }

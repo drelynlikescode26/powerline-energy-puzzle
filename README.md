@@ -42,6 +42,13 @@ powerline-energy-puzzle/
 
 ## Getting Started
 
+### Prerequisites
+
+- A web browser with PWA support
+- A local HTTP server (Python 3, Node.js, or any other)
+
+**Note**: The PWA icons (`assets/icon-192.png` and `assets/icon-512.png`) are currently placeholders. Replace them with actual PNG images for full PWA functionality.
+
 ### Local Development
 
 1. Clone the repository:
