@@ -20,8 +20,10 @@
     <div id="app">
         <header>
             <h1>Powerline</h1>
-            <div class="level-info">
+            <div class="header-info">
                 <span id="level-display">Level 1</span>
+                <span class="separator">•</span>
+                <span id="moves-display">Moves: 0</span>
             </div>
         </header>
         
@@ -31,11 +33,18 @@
         
         <footer>
             <div class="controls">
-                <button id="undo-btn" class="control-btn" disabled>Undo</button>
-                <button id="restart-btn" class="control-btn">Restart</button>
-            </div>
-            <div class="stats">
-                <span id="moves-display">Moves: 0</span>
+                <button id="undo-btn" class="control-btn" disabled>
+                    <span class="btn-icon">↶</span>
+                    <span class="btn-text">Undo</span>
+                </button>
+                <button id="restart-btn" class="control-btn">
+                    <span class="btn-icon">⟳</span>
+                    <span class="btn-text">Restart</span>
+                </button>
+                <button id="hint-btn" class="control-btn">
+                    <span class="btn-icon">💡</span>
+                    <span class="btn-text">Hint</span>
+                </button>
             </div>
         </footer>
     </div>

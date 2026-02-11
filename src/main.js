@@ -61,6 +61,13 @@ class PowerlineGame {
         this.handleRestart();
       });
     }
+
+    const hintBtn = document.getElementById('hint-btn');
+    if (hintBtn) {
+      hintBtn.addEventListener('click', () => {
+        this.handleHint();
+      });
+    }
   }
 
   /**
@@ -99,10 +106,60 @@ class PowerlineGame {
           this.selectedConduit = null;
           this.renderer.clearSelection();
         } else {
-          // Move failed - provide feedback (could add visual/audio feedback here)
-          console.log('Invalid move');
+          // Move failed - show shake animation
+          this.renderer.showInvalidMove(index);
         }
       }
+    }
+  }
+
+  /**
+   * Handle hint action
+   */
+  handleHint() {
+    // Find a valid move to suggest
+    const state = this.engine.getState();
+    const conduits = state.conduits;
+    
+    // Simple hint: find first valid move
+    for (let from = 0; from < conduits.length; from++) {
+      if (!this.engine.state.isConduitEmpty(from)) {
+        for (let to = 0; to < conduits.length; to++) {
+          if (from !== to && this.engine.isValidMove(from, to)) {
+            // Highlight the hint
+            this.showHintHighlight(from, to);
+            return;
+          }
+        }
+      }
+    }
+    
+    // No valid moves found - show modal
+    this.renderer.showHintMessage('No hints available. Try undoing or restarting.');
+  }
+
+  /**
+   * Show hint highlight animation
+   * @param {number} from - Source conduit
+   * @param {number} to - Target conduit
+   */
+  showHintHighlight(from, to) {
+    const conduitElements = document.querySelectorAll('.conduit');
+    const fromElement = conduitElements[from];
+    const toElement = conduitElements[to];
+    
+    const HINT_ANIMATION_DURATION = 1; // seconds
+    const HINT_ANIMATION_ITERATIONS = 2;
+    
+    if (fromElement && toElement) {
+      // Add highlight animation
+      fromElement.style.animation = `hintPulse ${HINT_ANIMATION_DURATION}s ease-in-out ${HINT_ANIMATION_ITERATIONS}`;
+      toElement.style.animation = `hintPulse ${HINT_ANIMATION_DURATION}s ease-in-out ${HINT_ANIMATION_ITERATIONS}`;
+      
+      setTimeout(() => {
+        fromElement.style.animation = '';
+        toElement.style.animation = '';
+      }, HINT_ANIMATION_DURATION * HINT_ANIMATION_ITERATIONS * 1000);
     }
   }
 

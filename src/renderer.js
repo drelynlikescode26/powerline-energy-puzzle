@@ -98,6 +98,21 @@ export class Renderer {
   }
 
   /**
+   * Show invalid move feedback
+   * @param {number} index - Conduit index
+   */
+  showInvalidMove(index) {
+    const conduitElements = this.container.querySelectorAll('.conduit');
+    if (conduitElements[index]) {
+      const element = conduitElements[index];
+      element.classList.add('invalid-move');
+      setTimeout(() => {
+        element.classList.remove('invalid-move');
+      }, 400);
+    }
+  }
+
+  /**
    * Register conduit click callback
    * @param {Function} callback - Function to call when conduit is clicked
    */
@@ -166,6 +181,39 @@ export class Renderer {
         this.onNextLevel();
       });
     }
+  }
+
+  /**
+   * Show hint message
+   * @param {string} message - Hint message to display
+   */
+  showHintMessage(message) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h2>💡 Hint</h2>
+        <p style="margin: 20px 0; font-size: 1.1rem; color: var(--text-secondary);">${message}</p>
+        <button id="close-hint-btn" class="control-btn">OK</button>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Add event listener
+    const closeBtn = modal.querySelector('#close-hint-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.remove();
+      });
+    }
+
+    // Also close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
   }
 
   /**
