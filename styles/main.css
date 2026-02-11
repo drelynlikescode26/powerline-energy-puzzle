@@ -1,0 +1,324 @@
+/**
+ * Main Stylesheet
+ * Minimal but functional styling for Phase 1
+ */
+
+/* CSS Variables */
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --accent-color: #00d9ff;
+  --border-color: #2d3561;
+  --success-color: #2ed573;
+  --error-color: #ff4757;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* App Container */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  margin-bottom: 10px;
+}
+
+.level-info {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* Main Game Container */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+#conduits-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+/* Conduit Styles */
+.conduit {
+  background: var(--bg-tertiary);
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px;
+  width: 80px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+}
+
+.conduit:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+}
+
+.conduit.selected {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/* Core Slot */
+.core-slot {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* Core */
+.core {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px currentColor,
+    inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Footer */
+footer {
+  padding: 20px 0;
+  border-top: 2px solid var(--border-color);
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.control-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+}
+
+.control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stats {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 3px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.modal-content button {
+  margin: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .level-info {
+    font-size: 1rem;
+  }
+
+  #conduits-container {
+    gap: 15px;
+  }
+
+  .conduit {
+    width: 70px;
+    padding: 12px;
+  }
+
+  .core-slot {
+    width: 45px;
+    height: 45px;
+  }
+
+  .core {
+    width: 35px;
+    height: 35px;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .control-btn {
+    width: 100%;
+  }
+
+  .modal-content {
+    margin: 20px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  #conduits-container {
+    gap: 10px;
+  }
+
+  .conduit {
+    width: 60px;
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .core-slot {
+    width: 40px;
+    height: 40px;
+  }
+
+  .core {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
