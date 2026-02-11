@@ -134,8 +134,8 @@ class PowerlineGame {
       }
     }
     
-    // No valid moves found
-    alert('No hints available. Try undoing or restarting.');
+    // No valid moves found - show modal
+    this.renderer.showHintMessage('No hints available. Try undoing or restarting.');
   }
 
   /**
@@ -148,15 +148,18 @@ class PowerlineGame {
     const fromElement = conduitElements[from];
     const toElement = conduitElements[to];
     
+    const HINT_ANIMATION_DURATION = 1; // seconds
+    const HINT_ANIMATION_ITERATIONS = 2;
+    
     if (fromElement && toElement) {
-      // Add highlight class
-      fromElement.style.animation = 'hintPulse 1s ease-in-out 2';
-      toElement.style.animation = 'hintPulse 1s ease-in-out 2';
+      // Add highlight animation
+      fromElement.style.animation = `hintPulse ${HINT_ANIMATION_DURATION}s ease-in-out ${HINT_ANIMATION_ITERATIONS}`;
+      toElement.style.animation = `hintPulse ${HINT_ANIMATION_DURATION}s ease-in-out ${HINT_ANIMATION_ITERATIONS}`;
       
       setTimeout(() => {
         fromElement.style.animation = '';
         toElement.style.animation = '';
-      }, 2000);
+      }, HINT_ANIMATION_DURATION * HINT_ANIMATION_ITERATIONS * 1000);
     }
   }
 

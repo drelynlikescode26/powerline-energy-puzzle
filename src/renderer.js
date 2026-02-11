@@ -184,6 +184,39 @@ export class Renderer {
   }
 
   /**
+   * Show hint message
+   * @param {string} message - Hint message to display
+   */
+  showHintMessage(message) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h2>💡 Hint</h2>
+        <p style="margin: 20px 0; font-size: 1.1rem; color: var(--text-secondary);">${message}</p>
+        <button id="close-hint-btn" class="control-btn">OK</button>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Add event listener
+    const closeBtn = modal.querySelector('#close-hint-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.remove();
+      });
+    }
+
+    // Also close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+  }
+
+  /**
    * Register next level callback
    * @param {Function} callback - Function to call for next level
    */
