@@ -1,3 +1,5 @@
+console.log("Powerline UI Loaded");
+
 /**
  * Main Application Entry Point
  * Initializes and coordinates all game modules
