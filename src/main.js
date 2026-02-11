@@ -61,6 +61,13 @@ class PowerlineGame {
         this.handleRestart();
       });
     }
+
+    const hintBtn = document.getElementById('hint-btn');
+    if (hintBtn) {
+      hintBtn.addEventListener('click', () => {
+        this.handleHint();
+      });
+    }
   }
 
   /**
@@ -99,10 +106,57 @@ class PowerlineGame {
           this.selectedConduit = null;
           this.renderer.clearSelection();
         } else {
-          // Move failed - provide feedback (could add visual/audio feedback here)
-          console.log('Invalid move');
+          // Move failed - show shake animation
+          this.renderer.showInvalidMove(index);
         }
       }
+    }
+  }
+
+  /**
+   * Handle hint action
+   */
+  handleHint() {
+    // Find a valid move to suggest
+    const state = this.engine.getState();
+    const conduits = state.conduits;
+    
+    // Simple hint: find first valid move
+    for (let from = 0; from < conduits.length; from++) {
+      if (!this.engine.state.isConduitEmpty(from)) {
+        for (let to = 0; to < conduits.length; to++) {
+          if (from !== to && this.engine.isValidMove(from, to)) {
+            // Highlight the hint
+            this.showHintHighlight(from, to);
+            return;
+          }
+        }
+      }
+    }
+    
+    // No valid moves found
+    alert('No hints available. Try undoing or restarting.');
+  }
+
+  /**
+   * Show hint highlight animation
+   * @param {number} from - Source conduit
+   * @param {number} to - Target conduit
+   */
+  showHintHighlight(from, to) {
+    const conduitElements = document.querySelectorAll('.conduit');
+    const fromElement = conduitElements[from];
+    const toElement = conduitElements[to];
+    
+    if (fromElement && toElement) {
+      // Add highlight class
+      fromElement.style.animation = 'hintPulse 1s ease-in-out 2';
+      toElement.style.animation = 'hintPulse 1s ease-in-out 2';
+      
+      setTimeout(() => {
+        fromElement.style.animation = '';
+        toElement.style.animation = '';
+      }, 2000);
     }
   }
 

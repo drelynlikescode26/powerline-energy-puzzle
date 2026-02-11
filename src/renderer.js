@@ -98,6 +98,21 @@ export class Renderer {
   }
 
   /**
+   * Show invalid move feedback
+   * @param {number} index - Conduit index
+   */
+  showInvalidMove(index) {
+    const conduitElements = this.container.querySelectorAll('.conduit');
+    if (conduitElements[index]) {
+      const element = conduitElements[index];
+      element.classList.add('invalid-move');
+      setTimeout(() => {
+        element.classList.remove('invalid-move');
+      }, 400);
+    }
+  }
+
+  /**
    * Register conduit click callback
    * @param {Function} callback - Function to call when conduit is clicked
    */
