@@ -1,0 +1,13 @@
+📦 Icon Placeholder
+
+This file is a placeholder for the 192x192px PNG icon.
+
+To complete the PWA setup, replace this file with an actual PNG image:
+- Dimensions: 192x192 pixels
+- Format: PNG
+- Content: App logo or branding
+
+The icon will be used for:
+- PWA installation prompts
+- App shortcuts
+- Bookmark icons

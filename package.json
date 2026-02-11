@@ -1,0 +1,17 @@
+{
+  "name": "powerline-energy-puzzle",
+  "version": "1.0.0",
+  "description": "Powerline is a color-sorting puzzle game where players route energy cores through conduits.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "puzzle",
+    "game",
+    "pwa"
+  ],
+  "author": "",
+  "license": "MIT"
+}
