@@ -5,19 +5,7 @@ const PALETTE: CoreColor[] = ['red', 'blue', 'green', 'yellow', 'purple', 'orang
 const BASE_LEVELS: LevelDefinition[] = [
   {
     id: 1,
-    name: 'Getting Started',
-    conduits: [
-      ['red', 'red'],
-      ['blue', 'blue'],
-      [],
-      []
-    ],
-    maxCores: 2,
-    difficulty: 'easy'
-  },
-  {
-    id: 2,
-    name: 'Color Separation',
+    name: 'First Sparks',
     conduits: [
       ['red', 'blue'],
       ['blue', 'red'],
@@ -28,11 +16,28 @@ const BASE_LEVELS: LevelDefinition[] = [
     difficulty: 'easy'
   },
   {
+    id: 2,
+    name: 'Color Separation',
+    conduits: [
+      ['red', 'blue', 'green'],
+      ['green', 'red', 'blue'],
+      ['blue', 'green', 'red'],
+      [],
+      [],
+      []
+    ],
+    maxCores: 3,
+    difficulty: 'easy'
+  },
+  {
     id: 3,
     name: 'Triple Threat',
     conduits: [
       ['red', 'blue', 'green'],
-      ['green', 'red', 'blue'],
+      ['yellow', 'red', 'blue'],
+      ['green', 'yellow', 'red'],
+      ['blue', 'green', 'yellow'],
+      [],
       [],
       []
     ],
@@ -43,13 +48,14 @@ const BASE_LEVELS: LevelDefinition[] = [
     id: 4,
     name: 'Careful Planning',
     conduits: [
-      ['red', 'blue', 'red'],
-      ['green', 'blue', 'green'],
-      ['blue', 'red', 'green'],
+      ['red', 'blue', 'green', 'yellow'],
+      ['yellow', 'red', 'blue', 'green'],
+      ['green', 'yellow', 'red', 'blue'],
+      ['blue', 'green', 'yellow', 'red'],
       [],
       []
     ],
-    maxCores: 3,
+    maxCores: 4,
     difficulty: 'medium'
   },
   {

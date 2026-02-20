@@ -53,10 +53,6 @@ export class GameState {
     if (!fromCore) return false;
     if (toCore !== null && toCore !== fromCore) return false;
 
-    if (this.isConduitUniform(fromIndex) && this.isConduitFull(fromIndex) && this.isConduitEmpty(toIndex)) {
-      return false;
-    }
-
     return true;
   }
 

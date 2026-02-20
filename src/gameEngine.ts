@@ -25,6 +25,9 @@ export class GameEngine {
     this.currentLevelId = levelId;
     this.state.initLevel(level);
     this.notifyStateChange();
+    if (this.checkCompletion()) {
+      this.handleLevelComplete();
+    }
     return true;
   }
 
@@ -180,11 +183,6 @@ export class GameEngine {
     const toCore = toConduit[toConduit.length - 1] ?? null;
 
     if (toCore && fromCore !== toCore) return false;
-
-    const fromUniform = fromConduit.every((core) => core === fromConduit[0]);
-    if (fromUniform && fromConduit.length === maxCores && toConduit.length === 0) {
-      return false;
-    }
 
     return true;
   }

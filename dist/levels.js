@@ -3,30 +3,44 @@ const PALETTE = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', '
 const BASE_LEVELS = [
   {
     id: 1,
-    name: 'Getting Started',
-    conduits: [['red', 'red'], ['blue', 'blue'], [], []],
+    name: 'First Sparks',
+    conduits: [['red', 'blue'], ['blue', 'red'], [], []],
     maxCores: 2,
     difficulty: 'easy'
   },
   {
     id: 2,
     name: 'Color Separation',
-    conduits: [['red', 'blue'], ['blue', 'red'], [], []],
-    maxCores: 2,
+    conduits: [['red', 'blue', 'green'], ['green', 'red', 'blue'], ['blue', 'green', 'red'], [], []],
+    maxCores: 3,
     difficulty: 'easy'
   },
   {
     id: 3,
     name: 'Triple Threat',
-    conduits: [['red', 'blue', 'green'], ['green', 'red', 'blue'], [], []],
+    conduits: [
+      ['red', 'blue', 'green'],
+      ['yellow', 'red', 'blue'],
+      ['green', 'yellow', 'red'],
+      ['blue', 'green', 'yellow'],
+      [],
+      []
+    ],
     maxCores: 3,
     difficulty: 'easy'
   },
   {
     id: 4,
     name: 'Careful Planning',
-    conduits: [['red', 'blue', 'red'], ['green', 'blue', 'green'], ['blue', 'red', 'green'], [], []],
-    maxCores: 3,
+    conduits: [
+      ['red', 'blue', 'green', 'yellow'],
+      ['yellow', 'red', 'blue', 'green'],
+      ['green', 'yellow', 'red', 'blue'],
+      ['blue', 'green', 'yellow', 'red'],
+      [],
+      []
+    ],
+    maxCores: 4,
     difficulty: 'medium'
   },
   {
