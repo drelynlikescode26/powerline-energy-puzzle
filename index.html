@@ -8,13 +8,13 @@
     <title>Powerline - Energy Puzzle Game</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/public/manifest.json">
+    <link rel="manifest" href="./public/manifest.json">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="./styles/main.css">
     
     <!-- Favicon placeholder -->
-    <link rel="icon" type="image/png" href="/assets/icon-192.png">
+    <link rel="icon" type="image/png" href="./assets/icon-192.png">
 </head>
 <body>
     <div id="app">
@@ -62,13 +62,13 @@
     </div>
     
     <!-- Core game modules -->
-    <script type="module" src="/dist/main.js"></script>
+    <script type="module" src="./dist/main.js"></script>
     
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/public/service-worker.js')
+                navigator.serviceWorker.register('./public/service-worker.js')
                     .then(registration => {
                         console.log('ServiceWorker registered:', registration.scope);
                     })
