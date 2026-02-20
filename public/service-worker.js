@@ -1,14 +1,17 @@
-const CACHE_NAME = 'powerline-v1';
+const CACHE_NAME = 'powerline-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/styles/main.css',
-  '/src/main.js',
-  '/src/gameState.js',
-  '/src/gameEngine.js',
-  '/src/levels.js',
-  '/src/renderer.js',
-  '/public/manifest.json'
+  './',
+  './index.html',
+  './styles/main.css',
+  './dist/main.js',
+  './dist/gameState.js',
+  './dist/gameEngine.js',
+  './dist/levels.js',
+  './dist/renderer.js',
+  './dist/types.js',
+  './public/manifest.json',
+  './assets/icon-192.png',
+  './assets/icon-512.png'
 ];
 
 // Install event - cache assets
