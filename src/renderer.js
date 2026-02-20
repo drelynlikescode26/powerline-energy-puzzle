@@ -137,10 +137,18 @@ export class Renderer {
       movesDisplay.textContent = `Moves: ${state.moves}`;
     }
 
-    // Update level display
-    const levelDisplay = document.getElementById('level-display');
-    if (levelDisplay) {
-      levelDisplay.textContent = `Level ${state.levelId}`;
+    // Update level name
+    const levelName = document.getElementById('level-name');
+    if (levelName && state.level) {
+      levelName.textContent = `${state.level.name}`;
+    }
+
+    // Update difficulty badge
+    const difficultyBadge = document.getElementById('difficulty-badge');
+    if (difficultyBadge && state.level) {
+      const difficulty = state.level.difficulty || 'easy';
+      difficultyBadge.textContent = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+      difficultyBadge.className = `difficulty-badge difficulty-${difficulty}`;
     }
   }
 

@@ -64,6 +64,13 @@ class PowerlineGame {
       });
     }
 
+    const restartIconBtn = document.getElementById('restart-icon-btn');
+    if (restartIconBtn) {
+      restartIconBtn.addEventListener('click', () => {
+        this.handleRestart();
+      });
+    }
+
     const hintBtn = document.getElementById('hint-btn');
     if (hintBtn) {
       hintBtn.addEventListener('click', () => {
@@ -87,11 +94,14 @@ class PowerlineGame {
    */
   handleConduitClick(index) {
     if (this.selectedConduit === null) {
-      // First click - select source conduit
+      // First click - select source conduit (must be non-empty)
       if (!this.engine.state.isConduitEmpty(index)) {
         this.selectedConduit = index;
         this.renderer.setSelectedConduit(index);
         this.renderer.render(this.engine.getState());
+        
+        // Debug log
+        console.log(`[Conduit Click] Selected source: conduit ${index}`);
       }
     } else {
       // Second click - attempt move
@@ -100,15 +110,23 @@ class PowerlineGame {
         this.selectedConduit = null;
         this.renderer.clearSelection();
         this.renderer.render(this.engine.getState());
+        
+        console.log(`[Conduit Click] Deselected conduit ${index}`);
       } else {
-        // Attempt to move
+        // Attempt to move (can move to empty or same-color conduit)
+        const isValidMove = this.engine.isValidMove(this.selectedConduit, index);
+        
+        console.log(`[Move Attempt] From: ${this.selectedConduit}, To: ${index}, Valid: ${isValidMove}`);
+        
         const success = this.engine.move(this.selectedConduit, index);
         
         if (success) {
+          console.log(`[Move Success] Moved from conduit ${this.selectedConduit} to ${index}`);
           this.selectedConduit = null;
           this.renderer.clearSelection();
         } else {
           // Move failed - show shake animation
+          console.log(`[Move Failed] Invalid move from ${this.selectedConduit} to ${index}`);
           this.renderer.showInvalidMove(index);
         }
       }

@@ -12,7 +12,7 @@ export const LEVELS = [
     id: 1,
     name: "Getting Started",
     conduits: [
-      ['red', 'red'],
+      ['green', 'green'],
       ['blue', 'blue'],
       [],
       []

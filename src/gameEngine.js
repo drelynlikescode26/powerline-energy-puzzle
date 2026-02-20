@@ -176,13 +176,6 @@ export class GameEngine {
     // Colors must match if target is not empty
     if (toCore !== null && toCore !== fromCore) return false;
 
-    // Don't allow moving from complete uniform conduit to empty
-    if (this.state.isConduitUniform(fromIndex) && 
-        this.state.isConduitFull(fromIndex) && 
-        this.state.isConduitEmpty(toIndex)) {
-      return false;
-    }
-
     return true;
   }
 }

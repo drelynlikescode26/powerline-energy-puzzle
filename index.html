@@ -18,32 +18,44 @@
 </head>
 <body>
     <div id="app">
+        <!-- Top HUD: Level info + Restart button -->
         <header>
-            <h1>Powerline</h1>
-            <div class="header-info">
-                <span id="level-display">Level 1</span>
-                <span class="separator">•</span>
+            <div class="header-top">
+                <button id="back-btn" class="icon-btn back-btn" style="visibility: hidden;">
+                    <span>←</span>
+                </button>
+                <div class="level-info">
+                    <h1 id="level-name">Level 1</h1>
+                    <span id="difficulty-badge" class="difficulty-badge difficulty-easy">Easy</span>
+                </div>
+                <button id="restart-icon-btn" class="icon-btn restart-icon-btn">
+                    <span>⟳</span>
+                </button>
+            </div>
+            <div class="move-counter">
                 <span id="moves-display">Moves: 0</span>
             </div>
         </header>
         
+        <!-- Main game board -->
         <main id="game-container">
             <div id="conduits-container"></div>
         </main>
         
+        <!-- Bottom dock with action buttons -->
         <footer>
-            <div class="controls">
-                <button id="undo-btn" class="control-btn" disabled>
+            <div class="controls dock">
+                <button id="undo-btn" class="dock-btn" disabled>
                     <span class="btn-icon">↶</span>
                     <span class="btn-text">Undo</span>
                 </button>
-                <button id="restart-btn" class="control-btn">
-                    <span class="btn-icon">⟳</span>
-                    <span class="btn-text">Restart</span>
-                </button>
-                <button id="hint-btn" class="control-btn">
+                <button id="hint-btn" class="dock-btn">
                     <span class="btn-icon">💡</span>
                     <span class="btn-text">Hint</span>
+                </button>
+                <button id="restart-btn" class="dock-btn">
+                    <span class="btn-icon">⟳</span>
+                    <span class="btn-text">Restart</span>
                 </button>
             </div>
         </footer>

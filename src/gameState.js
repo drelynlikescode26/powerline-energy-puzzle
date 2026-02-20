@@ -108,14 +108,6 @@ export class GameState {
       return false;
     }
 
-    // Don't allow moving from a complete uniform conduit to an empty conduit
-    // (this is a common puzzle game rule to prevent trivial moves)
-    if (this.isConduitUniform(fromIndex) && 
-        this.isConduitFull(fromIndex) && 
-        this.isConduitEmpty(toIndex)) {
-      return false;
-    }
-
     // Perform the move
     const core = this.conduits[fromIndex].pop();
     this.conduits[toIndex].push(core);
