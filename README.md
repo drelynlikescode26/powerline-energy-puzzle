@@ -27,12 +27,14 @@ powerline-energy-puzzle/
 ├── public/                 # PWA assets
 │   ├── manifest.json       # PWA manifest
 │   └── service-worker.js   # Offline support
-├── src/                    # Core game logic
-│   ├── main.js            # Application entry point
-│   ├── gameEngine.js      # Game coordination
-│   ├── gameState.js       # State management
-│   ├── levels.js          # Level definitions
-│   └── renderer.js        # UI rendering
+├── src/                    # Core game logic (TypeScript)
+│   ├── main.ts            # Application entry point
+│   ├── gameEngine.ts      # Game coordination + hint search
+│   ├── gameState.ts       # Strict state management
+│   ├── levels.ts          # 100-level definitions/generator
+│   ├── renderer.ts        # UI rendering + animation states
+│   └── types.ts           # Core types and interfaces
+├── dist/                   # Compiled browser-ready JavaScript
 ├── styles/                 # Stylesheets
 │   └── main.css           # Main stylesheet
 └── assets/                 # Icons and images
@@ -57,7 +59,13 @@ git clone https://github.com/drelynlikescode26/powerline-energy-puzzle.git
 cd powerline-energy-puzzle
 ```
 
-2. Start a local server:
+2. Install dependencies and build:
+```bash
+npm install
+npm run build
+```
+
+3. Start a local server:
 ```bash
 # Using Python 3
 python3 -m http.server 8000
@@ -66,7 +74,7 @@ python3 -m http.server 8000
 npm start
 ```
 
-3. Open your browser to `http://localhost:8000`
+4. Open your browser to `http://localhost:8000`
 
 ### PWA Installation
 
@@ -79,10 +87,10 @@ The game can be installed as a Progressive Web App:
 
 ### Modular Design
 
-- **GameState**: Manages conduits, move history, and level state
-- **GameEngine**: Coordinates state, validation, and level progression
-- **Renderer**: Handles all DOM manipulation and visual updates
-- **Levels**: JSON-based level definitions for easy scaling
+- **GameState**: Manages conduits, move history, and level state with strict typing
+- **GameEngine**: Coordinates state, validation, level progression, and intelligent hint scoring
+- **Renderer**: Handles DOM updates, conduit ignition states, and animated core transfer effects
+- **Levels**: Hybrid handcrafted + generated level definitions (100 total)
 
 ### State Management
 

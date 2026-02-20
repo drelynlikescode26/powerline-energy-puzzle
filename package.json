@@ -4,8 +4,10 @@
   "description": "Powerline is a color-sorting puzzle game where players route energy cores through conduits.",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000",
-    "dev": "python3 -m http.server 8000"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "npm run build && python3 -m http.server 8000",
+    "dev": "npm run start"
   },
   "keywords": [
     "puzzle",
@@ -13,5 +15,8 @@
     "pwa"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
 }

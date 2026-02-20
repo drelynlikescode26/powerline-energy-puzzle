@@ -18,6 +18,8 @@
   --border-radius: 12px;
   --transition-speed: 0.3s;
   --bounce-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --progress-glow-a: rgba(0, 217, 255, 0.05);
+  --progress-glow-b: rgba(45, 94, 234, 0.05);
 }
 
 /* Reset and Base Styles */
@@ -47,12 +49,13 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(45, 94, 234, 0.06) 0%, transparent 50%);
+  background:
+    radial-gradient(circle at 20% 50%, var(--progress-glow-a) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--progress-glow-b) 0%, transparent 50%);
   pointer-events: none;
   user-select: none;
   z-index: 0;
+  transition: background var(--transition-speed) ease;
 }
 
 /* Vignette effect */
@@ -321,6 +324,40 @@ main {
   opacity: 1;
 }
 
+.conduit.powered-up {
+  border-color: var(--success-color);
+  box-shadow:
+    0 0 36px rgba(46, 213, 115, 0.45),
+    0 8px 24px rgba(46, 213, 115, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.45),
+    inset 0 2px 10px rgba(46, 213, 115, 0.22);
+  animation: poweredPulse 1.6s ease-in-out infinite;
+}
+
+.conduit.core-moving-out,
+.conduit.core-moving-in {
+  transform: translateY(-4px) scale(1.04);
+  border-color: var(--accent-color);
+}
+
+@keyframes poweredPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 36px rgba(46, 213, 115, 0.45),
+      0 8px 24px rgba(46, 213, 115, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.45),
+      inset 0 2px 10px rgba(46, 213, 115, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 48px rgba(46, 213, 115, 0.65),
+      0 10px 30px rgba(46, 213, 115, 0.35),
+      0 4px 12px rgba(0, 0, 0, 0.45),
+      inset 0 2px 12px rgba(46, 213, 115, 0.28);
+  }
+}
+
 @keyframes selectedPulse {
   0%, 100% {
     box-shadow: 
@@ -425,6 +462,24 @@ main {
   opacity: 0.3;
   filter: blur(4px);
   z-index: -1;
+}
+
+.flying-core {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  z-index: 1100;
+  transform: translate(0, 0) scale(1);
+  transition: transform 0.34s var(--bounce-easing);
+  pointer-events: none;
+  box-shadow:
+    0 0 16px rgba(255, 255, 255, 0.35),
+    0 0 26px rgba(0, 217, 255, 0.4);
+}
+
+.flying-core.active {
+  transform: translate(var(--target-x), var(--target-y)) scale(1.08);
 }
 
 /* Footer */
